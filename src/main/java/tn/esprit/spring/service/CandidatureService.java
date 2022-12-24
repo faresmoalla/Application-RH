@@ -1,13 +1,13 @@
 package tn.esprit.spring.service;
 
-import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.Candidature;
-import tn.esprit.spring.entity.Offre;
+
 import tn.esprit.spring.repository.CandidatureRepository;
 
 @Service
