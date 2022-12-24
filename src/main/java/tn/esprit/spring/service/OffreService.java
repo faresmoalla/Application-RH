@@ -25,7 +25,7 @@ import tn.esprit.spring.entity.TypeOffre;
 import tn.esprit.spring.repository.OffreRepository;
 
 @Service
-public class OffreService {
+public class OffreService implements IOffreService {
 	
 
 	
@@ -35,6 +35,7 @@ public class OffreService {
 
 	/////////////////////////Ajout Offre//////////////////
 		
+		@Override
 		public void addOffre(Offre offre) {
 			
 			offreRepo.save(offre);
@@ -43,7 +44,7 @@ public class OffreService {
 		}
 
 	///////////////////////Delete Offre//////////////////////
-		
+		@Override
 		public void deleteOffre( Long idOffre) {
 
 			
@@ -53,14 +54,14 @@ public class OffreService {
 			
 		}
 
-		
+		@Override
 		public List<Offre> listAllOffre(){
 			return offreRepo.findAll();
 			
 		}
 	
 		///////////////////////Update Offre//////////////////////
-
+		@Override
 		public void updateOffre(Offre offre, Long idOffre) {
 			Date currentSqlDate = new Date(System.currentTimeMillis());
 			Offre off = offreRepo.findById(idOffre).orElse(null);
