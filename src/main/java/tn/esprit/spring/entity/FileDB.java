@@ -50,20 +50,17 @@ public class FileDB implements Serializable {
   @NonNull
   private byte[] data;
   
-//  @ManyToOne
-//@JsonIgnore 
-//  private Trip trip;
   
   
   @ManyToMany
   @JsonIgnore
   private List<User> user;
   
-  /*
-  @ManyToMany(mappedBy="files")
+  @ManyToMany
   @JsonIgnore
-  private List<Vehicule> veh;
-*/
+  private List<Candidature> candidature;
+
+
   
   
  
