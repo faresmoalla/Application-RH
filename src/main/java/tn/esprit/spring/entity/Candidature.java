@@ -25,10 +25,10 @@ public class Candidature {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long CandidatureId;
+	Long candidatureId;
 	
 	@ManyToMany(mappedBy="candidature")
-	@JsonIgnore
+
 	private List<FileDB> files;
 	
 	

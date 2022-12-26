@@ -3,6 +3,7 @@ package tn.esprit.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import tn.esprit.spring.entity.Offre;
+import tn.esprit.spring.entity.User;
 import tn.esprit.spring.service.IOffreService;
 
 
@@ -23,6 +25,7 @@ import tn.esprit.spring.service.IOffreService;
 
 @RestController
 @RequestMapping("/offre")
+@CrossOrigin(origins = "*",exposedHeaders="Access-Control-Allow-Origin" )
 
 public class OffreController {
 	
@@ -31,8 +34,8 @@ public class OffreController {
 	
 	
 	@PostMapping("/add-offre")
-	public void addOffre(@RequestBody Offre f) {
-		offreService.addOffre(f);
+	public Offre addOffre(@RequestBody Offre f) {
+		return offreService.addOffre(f);
 
 	}	
 	
@@ -62,6 +65,11 @@ public class OffreController {
 		offreService.updateOffre(f, idOffre);
 
 	}
-	
+	@GetMapping("/get-offre/{id-offre}")
+	@ResponseBody
+	public Offre getuserbyid(@PathVariable("id-offre") Long idoffre) {
+		return offreService.affichDetailoffre(idoffre);
+
+	}
 
 }

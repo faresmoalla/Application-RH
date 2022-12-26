@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.Candidature;
+import tn.esprit.spring.entity.FileDB;
 
 import tn.esprit.spring.repository.CandidatureRepository;
+import tn.esprit.spring.repository.FileDBRepository;
 
 @Service
 public class CandidatureService implements ICandidatureService {
@@ -16,10 +18,12 @@ public class CandidatureService implements ICandidatureService {
 	
 	@Autowired
 	CandidatureRepository candidatureRepo;
+	@Autowired
+	FileDBRepository fileRepo;
 	
 	@Override
-	public void addCandidature(Candidature candidat) {		
-		candidatureRepo.save(candidat);
+	public Candidature addCandidature(Candidature candidat) {		
+		return candidatureRepo.save(candidat);
 		 
 	}
 
@@ -46,6 +50,15 @@ public class CandidatureService implements ICandidatureService {
 		candidatureRepo.save(candidat);
 		
 	}	*/
+
+	@Override
+	public FileDB affecterfileCandidature(Long idCandidature, Long idfile) {
+		Candidature u = candidatureRepo.findById(idCandidature).orElse(null);
+		FileDB f = fileRepo.findById(idfile).orElse(null);
+		f.getCandidature().add(u);
+		return fileRepo.save(f);
+		
+	}
 	
 	
 }

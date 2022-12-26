@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import tn.esprit.spring.entity.Candidature;
+import tn.esprit.spring.entity.FileDB;
 import tn.esprit.spring.entity.Offre;
 import tn.esprit.spring.service.ICandidatureService;
 import tn.esprit.spring.service.OffreService;
@@ -28,8 +29,8 @@ public class CandidatureController {
 	
 	
 	@PostMapping("/add-candidature")
-	public void addCandidature(@RequestBody Candidature f) {
-		candidatService.addCandidature(f);
+	public Candidature addCandidature(@RequestBody Candidature f) {
+		return candidatService.addCandidature(f);
 
 	}	
 	
@@ -59,6 +60,11 @@ public class CandidatureController {
 		candidatService.updateCandidature(f, idCandidature);
 
 	}*/
-	
+	@PutMapping("/affecter-file-vehicule/{id-ca}/{id-file}")
+	@ResponseBody
+	public FileDB affecterfilecanditature(@PathVariable("id-ca") Long idca,@PathVariable("id-file") Long idfile) {
+		return candidatService.affecterfileCandidature(idca, idfile);
+
+	}
 	
 }

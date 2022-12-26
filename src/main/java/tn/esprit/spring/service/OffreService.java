@@ -27,8 +27,8 @@ public class OffreService implements IOffreService {
 
 		
 		@Override
-		public void addOffre(Offre offre) {		
-			offreRepo.save(offre);
+		public Offre addOffre(Offre offre) {		
+			return offreRepo.save(offre);
 			 
 		}
 
@@ -57,6 +57,12 @@ public class OffreService implements IOffreService {
 			off.setSalaire(offre.getSalaire());
 			offreRepo.save(off);
 			
+		}
+
+		@Override
+		public Offre affichDetailoffre(Long idOffre) {
+			// TODO Auto-generated method stub
+			return offreRepo.findById(idOffre).orElse(null);
 		}
 
 		

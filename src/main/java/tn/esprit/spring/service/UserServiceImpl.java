@@ -1,11 +1,15 @@
 package tn.esprit.spring.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.FileDB;
+import tn.esprit.spring.entity.Role;
+import tn.esprit.spring.entity.RoleName;
 import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.FileDBRepository;
 import tn.esprit.spring.repository.UserRepository;
@@ -26,7 +30,7 @@ public class UserServiceImpl implements IUserservice {
 		User u = userRepo.findById(idUser).orElse(null);
 		u.setUserName(user.getUserName());
 		u.setTel(user.getTel());
-		
+		u.setRole(user.getRole());
 		u.setEmail(user.getEmail());
 		
 
