@@ -1,7 +1,10 @@
 package tn.esprit.spring.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,4 +29,10 @@ u=userService.saveUser(user);
 }
 
 return u; }
+@GetMapping("/login")
+public Principal login(Principal principal) {
+     
+     
+    return principal;
+}
 }
