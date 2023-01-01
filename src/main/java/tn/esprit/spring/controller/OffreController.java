@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import tn.esprit.spring.entity.FileDB;
 import tn.esprit.spring.entity.Offre;
 import tn.esprit.spring.entity.User;
 import tn.esprit.spring.service.IOffreService;
@@ -69,6 +69,13 @@ public class OffreController {
 	@ResponseBody
 	public Offre getuserbyid(@PathVariable("id-offre") Long idoffre) {
 		return offreService.affichDetailoffre(idoffre);
+
+	}
+	
+	@PutMapping("/affecter-file-offre/{idO}/{id-file}")
+	@ResponseBody
+	public FileDB affecterfilecanditature(@PathVariable("idO") Long idO,@PathVariable("id-file") Long idfile) {
+		return offreService.affecterfileOffre(idO, idfile);
 
 	}
 
