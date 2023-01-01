@@ -60,7 +60,9 @@ public class FileDB implements Serializable {
   @JsonIgnore
   private List<Candidature> candidature;
 
-
+  @ManyToMany
+  @JsonIgnore
+  private List<Offre> offre;
   
   
  

@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -48,6 +49,8 @@ public class Offre implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date datePublication;
 	
-	
+	@ManyToMany(mappedBy="offre")
+
+	private List<FileDB> files;
 	
 }

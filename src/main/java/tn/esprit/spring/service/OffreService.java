@@ -13,9 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-
+import tn.esprit.spring.entity.Candidature;
+import tn.esprit.spring.entity.FileDB;
 import tn.esprit.spring.entity.Offre;
-
+import tn.esprit.spring.repository.FileDBRepository;
 import tn.esprit.spring.repository.OffreRepository;
 
 @Service
@@ -23,6 +24,8 @@ public class OffreService implements IOffreService {
 	
 		@Autowired
 		OffreRepository offreRepo;
+		@Autowired
+		FileDBRepository fileRepo;
 	
 
 		
@@ -61,7 +64,6 @@ public class OffreService implements IOffreService {
 
 		@Override
 		public Offre affichDetailoffre(Long idOffre) {
-			// TODO Auto-generated method stub
 			return offreRepo.findById(idOffre).orElse(null);
 		}
 
@@ -69,7 +71,14 @@ public class OffreService implements IOffreService {
 		
 		
 	
-		
+		@Override
+		public FileDB affecterfileOffre(Long idOffre, Long idfile) {
+			Offre u = offreRepo.findById(idOffre).orElse(null);
+			FileDB f = fileRepo.findById(idfile).orElse(null);
+			f.getOffre().add(u);
+			return fileRepo.save(f);
+			
+		}
 	
 
 		

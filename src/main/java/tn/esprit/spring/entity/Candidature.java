@@ -27,6 +27,7 @@ public class Candidature {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long candidatureId;
 	
+	
 	@ManyToMany(mappedBy="candidature")
 
 	private List<FileDB> files;
