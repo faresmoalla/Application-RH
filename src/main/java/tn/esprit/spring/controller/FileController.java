@@ -95,6 +95,7 @@ public class FileController {
         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
         .body(fileDB.getData());
   }
+  
 
   @GetMapping("/filesdetail/{id}")
   public FileDB getFiledetail(@PathVariable Long id) {
