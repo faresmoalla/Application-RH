@@ -1,5 +1,5 @@
 package tn.esprit.spring.controller;
-
+/*
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,13 +26,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.grokonez.s3.services.S3Services;
+
 import lombok.extern.slf4j.Slf4j;
 import tn.esprit.spring.entity.FileDB;
 import tn.esprit.spring.message.ResponseFile;
 import tn.esprit.spring.message.ResponseMessage;
 import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.service.FileStorageService;
-
+/*
 @CrossOrigin(origins = "http://localhost:4200/" )
 @Slf4j
 @RestController
@@ -107,12 +109,28 @@ public class FileController {
   @GetMapping("/filesuser/{id}")
   public List<FileDB> getListFilesdevoyage(@PathVariable Long id) {
     return storageService.getFileByannonce(id);
+} 
 }
+*/
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-
-  
-
-
-  
-  
+import tn.esprit.spring.service.S3Services;
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController
+public class FileController {
+	
+	@Autowired
+	S3Services s3Services;
+	
+    @PostMapping("/api/file/upload")
+    public String uploadMultipartFile(@RequestParam("file") MultipartFile file) {
+    	String keyName = file.getOriginalFilename();
+		s3Services.uploadFile(keyName, file);
+		return "Upload Successfully -> KeyName = " + keyName;
+    }    
 }

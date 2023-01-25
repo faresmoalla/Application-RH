@@ -36,4 +36,10 @@ user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 user.setActive(true);
 user.setRoles(roles);
 user.setRole("ADMIN");
-return userRepository.save(user); }}
+
+
+return userRepository.save(user);
+
+
+
+}}

@@ -1,8 +1,11 @@
 package tn.esprit.spring.controller;
 
 import java.security.Principal;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +20,8 @@ import tn.esprit.spring.service.UserService;
 public class HomeController {
 @Autowired
 UserService userService;
+@Autowired
+JavaMailSender javaMailSender;
 @PostMapping("/registration")
 public User createNewUser( @RequestBody User user) {
 	User u;
@@ -25,6 +30,14 @@ if (userExists != null) {
 u=userExists;
 } else {
 u=userService.saveUser(user);
+SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+simpleMailMessage.setFrom("ikram88781@gmail.com");
+simpleMailMessage.setTo(user.getEmail());
+simpleMailMessage.setSubject(user.getUserName() + " " + "Welcome");
+simpleMailMessage.setText("Welcome"+user.getUserName());
+System.out.println("sendig mail//////////");
+javaMailSender.send(simpleMailMessage);
+
 
 }
 
